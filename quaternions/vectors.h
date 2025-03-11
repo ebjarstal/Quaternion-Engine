@@ -4,6 +4,9 @@
 
 struct Vector3D {
 	float x, y, z;
+
+public:
+	const float getNorm() const;
 };
 
 std::ostream& operator<<(std::ostream& f, const Vector3D& v);
