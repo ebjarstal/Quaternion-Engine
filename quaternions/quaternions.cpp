@@ -1,10 +1,10 @@
 #include "quaternions.h"
-#include <cmath>
 
 std::ostream& operator<<(std::ostream& f, const Quaternion& q) {
 	const float numbers[4]{ q.getScalar(), q.getVector().x, q.getVector().y, q.getVector().z };
 	const char  basis_vectors[3]{ 'i', 'j', 'k' };
 	for (int i = 0; i < 3; i++) {
+		// print absolute value then evaluate sign of next number and print appropriate sign
 		f << std::abs(numbers[i]);
 		if (i > 0) f << basis_vectors[i - 1];
 		if (numbers[i + 1] >= 0) f << "+";
@@ -109,7 +109,7 @@ const Vector3D Quaternion::getVector() const {
 }
 
 // Returns (Quaternion) conjugate of Quaternion object.
-const Quaternion Quaternion::getConjugate() const {
+Quaternion Quaternion::getConjugate() const {
 	return {
 		scalar,
 		-1 * vector
@@ -118,7 +118,7 @@ const Quaternion Quaternion::getConjugate() const {
 
 // Returns the norm of the quaternion.
 // By definition, it is equal to the square root of the product of the quaternion and its conjugate.
-const float Quaternion::getNorm() const {
+float Quaternion::getNorm() const {
 	const float a = getScalar();
 	const float b = getVector().x;
 	const float c = getVector().y;
@@ -130,7 +130,7 @@ const float Quaternion::getNorm() const {
 // If the quaternion is nonzero, returns the quaternion's inverse.
 // Note that if the quaternion is zero, the method will simply return of a copy of the quaternion.
 // This is because the inverse of a zero quaternion is undefined.
-const Quaternion Quaternion::getInverse() const {
+Quaternion Quaternion::getInverse() const {
 	if (isZero() == false) {
 		return *this;
 	}
@@ -148,11 +148,35 @@ const Quaternion Quaternion::getInverse() const {
 // Note that it results in a unit quaternion.
 // Note also that if the quaterion is zero, the method will simply return a copy of the quaternion.
 // This is because the versor of a zero quaternion is undefined.
-const Quaternion Quaternion::getVersor() const {
+Quaternion Quaternion::getVersor() const {
 	if (isZero() == true) {
 		return *this;
 	}
 	return *this / getNorm();
+}
+
+// Returns the roots of the quaternion. If the quaternion is zero, the two roots are zero.
+// Note that if the quaternion is non-zero, the first root is 'negative' and the second is 'positive'.
+Quaternion* Quaternion::getRoots() const {
+	Quaternion roots[2];
+
+	if (isZero() == true) {
+		roots[0] = { 0, 0, 0, 0 };
+		roots[1] = { 0, 0, 0, 0 };
+		return roots;
+	}
+	// 'negative' root
+	roots[0] = {
+		-1.f * std::sqrt(1.f/2.f*(getNorm() + scalar)),
+		-1.f * vector / vector.getNorm() * std::sqrt(1.f/2.f*(getNorm() - scalar))
+	};
+	// 'positive' root
+	roots[1] = {
+		std::sqrt(1.f / 2.f * (scalar + getNorm())),
+		vector / vector.getNorm() * std::sqrt(1.f / 2.f * (getNorm() - scalar))
+	};
+
+	return roots;
 }
 
 // Returns true if real and vector parts are null. Returns false otherwise.

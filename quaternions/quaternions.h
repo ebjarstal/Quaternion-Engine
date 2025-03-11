@@ -21,13 +21,16 @@ public:
 	void setVectorY(const float& c);
 	void setVectorZ(const float& d);
 
-	// getters
+	// const getters
 	const float      getScalar()    const;
 	const Vector3D   getVector()    const;
-	const Quaternion getConjugate() const;
-	const float      getNorm()      const;
-	const Quaternion getInverse()   const;
-	const Quaternion getVersor()    const;
+
+	// getters
+	Quaternion  getConjugate() const;
+	float       getNorm()      const;
+	Quaternion  getInverse()   const;
+	Quaternion  getVersor()    const;
+	Quaternion* getRoots()     const;
 
 	// booleans
 	bool isZero()     const;
