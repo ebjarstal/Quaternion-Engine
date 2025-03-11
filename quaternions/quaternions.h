@@ -1,52 +1,47 @@
 #pragma once
 
+#include "vectors.h"
 #include <iostream>
 
-struct Vector3D {
-	float x, y, z;
-};
-
 class Quaternion {
-	float    scalar;	// scalar part (real part)
-	Vector3D vector;	// vector part (imaginary part)
+	float    scalar;	// scalar part (aka real part)
+	Vector3D vector;	// vector part (aka imaginary part)
 
 public:
+	// constructors
 	Quaternion() : scalar(0), vector({ 0 }) {}
 	Quaternion(float a, float b, float c, float d) : scalar(a), vector({ b, c, d }) {}
+	Quaternion(float a, Vector3D v) : scalar(a), vector(v) {}
+
+	// setters
+	void setScalar(const float& a);
+	void setVector(const Vector3D& v);
+	void setVector(const float& b, const float& c, const float& d);
+	void setVectorX(const float& b);
+	void setVectorY(const float& c);
+	void setVectorZ(const float& d);
 
 	// getters
-	float          getScalar();
-	const float    getScalar() const;
-	Vector3D       getVector();
-	const Vector3D getVector() const;
+	const float      getScalar()    const;
+	const Vector3D   getVector()    const;
+	const Quaternion getConjugate() const;
+	const float      getNorm()      const;
+	const Quaternion getInverse()   const;
+	const Quaternion getVersor()    const;
 
 	// booleans
 	bool isZero()     const;
 	bool isIdentity() const;
+	bool hasInverse() const;
+	bool isUnit()     const;
 };
 
-inline std::ostream& operator<<(std::ostream& f, const Quaternion& q) {
-	const float    scalar = q.getScalar();
-	const Vector3D vector = q.getVector();
+std::ostream& operator<<(std::ostream& f, const Quaternion& q);
+Quaternion operator+(const Quaternion& q1, const Quaternion& q2);
+Quaternion operator-(const Quaternion& q1, const Quaternion& q2);
+Quaternion operator*(const Quaternion& q, const float& lambda);
+Quaternion operator*(const float& lambda, const Quaternion& q);
+Quaternion operator/(const Quaternion& q, const float& lambda);
+Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
-	if (q.isZero() == true) {
-		f << "0";
-		return f;
-	}
-
-	if (scalar != 0) f << scalar;
-	if (vector.x != 0) {
-		if (vector.x > 0) f << "+";
-		f << vector.x << "i";
-	}
-	if (vector.y != 0) {
-		if (vector.y > 0) f << "+";
-		f << vector.y << "j";
-	}
-	if (vector.z != 0) {
-		if (vector.z > 0) f << "+";
-		f << vector.z << "k";
-	}
-
-	return f;
-}
+const float getDistance(const Quaternion& q1, const Quaternion& q2);
