@@ -5,11 +5,12 @@ std::ostream& operator<<(std::ostream& f, const Quaternion& q) {
 	const float numbers[4]{ q.getScalar(), q.getVector().x, q.getVector().y, q.getVector().z };
 	const char  basis_vectors[3]{ 'i', 'j', 'k' };
 	for (int i = 0; i < 3; i++) {
-		f << numbers[i];
+		f << std::abs(numbers[i]);
 		if (i > 0) f << basis_vectors[i - 1];
 		if (numbers[i + 1] >= 0) f << "+";
+		else f << "-";
 	}
-	f << numbers[3] << basis_vectors[2];
+	f << std::abs(numbers[3]) << basis_vectors[2];
 	return f;
 }
 
@@ -47,7 +48,7 @@ Quaternion operator/(const Quaternion& q, const float& lambda) {
 	};
 }
 
-// Returns Hamilton product of two quaternions
+// Returns Hamilton product of two given quaternions
 Quaternion operator*(const Quaternion& q1, const Quaternion& q2) {
 	const float a1 = q1.getScalar();
 	const float b1 = q1.getVector().x;
@@ -176,6 +177,6 @@ bool Quaternion::isUnit() const {
 
 // Returns the distance between the two given quaternions.
 // Note that this value is defined as the norm of their difference.
-const float getDistance(const Quaternion& q1, const Quaternion& q2) {
+float getDistance(const Quaternion& q1, const Quaternion& q2) {
 	return (q1 - q2).getNorm();
 }

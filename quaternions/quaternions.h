@@ -44,4 +44,4 @@ Quaternion operator*(const float& lambda, const Quaternion& q);
 Quaternion operator/(const Quaternion& q, const float& lambda);
 Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
-const float getDistance(const Quaternion& q1, const Quaternion& q2);
+float getDistance(const Quaternion& q1, const Quaternion& q2);
