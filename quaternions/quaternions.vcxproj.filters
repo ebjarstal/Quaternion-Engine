@@ -27,6 +27,9 @@
     <ClCompile Include="rotations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="projection3Dto2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="quaternions.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rotations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="projection3Dto2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

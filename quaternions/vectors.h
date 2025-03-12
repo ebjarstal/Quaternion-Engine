@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+struct Vector2D {
+	float x, y;
+};
+
 struct Vector3D {
 	float x, y, z;
 
