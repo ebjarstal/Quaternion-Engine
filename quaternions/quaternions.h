@@ -11,13 +11,13 @@ public:
 	// Constructor for the zero quaternion.
 	Quaternion() : scalar(0), vector({ 0 }) {}
 	// Constructor for a quaternion.
-	Quaternion(float& a, float& b, float& c, float& d) : scalar(a), vector({ b, c, d }) {}
+	Quaternion(float a, float b, float c, float d) : scalar(a), vector({ b, c, d }) {}
 	// Constructor for a quaternion.
-	Quaternion(float& a, Vector3D& v) : scalar(a), vector(v) {}
+	Quaternion(float a, Vector3D v) : scalar(a), vector(v) {}
 	// Constructor for real quaternions.
-	Quaternion(float& a) : scalar(a), vector({0}) {}
+	Quaternion(float a) : scalar(a), vector({0}) {}
 	// Constructor for pure imaginary quaternions.
-	Quaternion (Vector3D& v) : scalar(0), vector(v) {}
+	Quaternion (Vector3D v) : scalar(0), vector(v) {}
 
 	// Sets the given argument as the quaternion's scalar.
 	void setScalar(const float& a);
