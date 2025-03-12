@@ -7,7 +7,13 @@ struct Vector3D {
 
 public:
 	// Returns the Euclidean norm of the vector.
-	const float getNorm() const;
+	float getNorm() const;
+
+	// Returns the normalized vector relative to the vector.
+	Vector3D getNormalized() const;
+
+	// Returns true if the norm of the vector is 1. Returns false otherwise.
+	bool isUnit() const;
 };
 
 std::ostream& operator<<(std::ostream& f, const Vector3D& v);

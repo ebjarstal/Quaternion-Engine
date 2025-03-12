@@ -42,8 +42,19 @@ Vector3D operator/(const Vector3D& v, const float& lambda) {
 	};
 }
 
-const float Vector3D::getNorm() const {
+float Vector3D::getNorm() const {
 	return std::sqrt(x * x + y * y + z * z);
+}
+
+Vector3D Vector3D::getNormalized() const {
+	if (isUnit()) {
+		return *this;
+	}
+	return *this / getNorm();
+}
+
+bool Vector3D::isUnit() const {
+	return getNorm() == 1.f;
 }
 
 float dotProduct(const Vector3D& v1, const Vector3D& v2) {
