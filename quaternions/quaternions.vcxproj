@@ -133,10 +133,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="quaternions.cpp" />
+    <ClCompile Include="rotations.cpp" />
     <ClCompile Include="vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="quaternions.h" />
+    <ClInclude Include="rotations.h" />
     <ClInclude Include="vectors.h" />
   </ItemGroup>
   <ItemGroup>

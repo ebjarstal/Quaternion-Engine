@@ -24,12 +24,18 @@
     <ClCompile Include="vectors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rotations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="quaternions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vectors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rotations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
