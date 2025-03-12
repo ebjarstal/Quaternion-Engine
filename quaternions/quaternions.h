@@ -32,37 +32,35 @@ public:
 	void setVectorZ(const float& d);
 
 	// Returns (float) real part of Quaternion object.
-	const float      getScalar()    const;
+	const float getScalar() const;
 
 	// Returns (Vector3D) vector part of Quaternion object.
 	// See definition of Vector3D struct for more information.
-	const Vector3D   getVector()    const;
+	const Vector3D getVector() const;
 
 	// Returns (Quaternion) conjugate of Quaternion object.
-	Quaternion  getConjugate() const;
+	Quaternion getConjugate() const;
 
 	// Returns the norm of the quaternion.
-	// By definition, it is equal to the square root of the product of the quaternion and its conjugate.
-	float       getNorm()      const;
+	float getNorm() const;
 
 	// If the quaternion is nonzero, returns the quaternion's inverse.
 	// Note that if the quaternion is zero, the method will simply return of a copy of the quaternion.
 	// This is because the inverse of a zero quaternion is undefined.
-	Quaternion  getInverse()   const;
+	Quaternion getInverse() const;
 
 	// Returns the versor of the quaternion.
-	// By definition, the versor of a quaternion is the division of itself by its norm
 	// Note that it results in a unit quaternion.
 	// Note also that if the quaterion is zero, the method will simply return a copy of the quaternion.
 	// This is because the versor of a zero quaternion is undefined.
-	Quaternion  getVersor()    const;
+	Quaternion getVersor() const;
 
 	// Returns the roots of the quaternion. If the quaternion is zero, the two roots are zero.
 	// Note that if the quaternion is non-zero, the first root is 'negative' and the second is 'positive'.
-	Quaternion* getRoots()     const;
+	Quaternion* getRoots() const;
 
 	// Returns true if real and vector parts are null. Returns false otherwise.
-	bool isZero()     const;
+	bool isZero() const;
 
 	// Returns true if real part is equal to 1 and vector part is null. Returns false otherwise.
 	bool isIdentity() const;
