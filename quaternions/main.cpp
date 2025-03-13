@@ -4,14 +4,16 @@
 #include "vectors.h"
 #include "quaternions.h"
 #include "rotations.h"
+#include "coordinatesystems.h"
 #include "projections.h"
+#include "tests.h"
 
 // STL
 #include <iostream>
 #include <vector>
 #include <math.h>
 
-constexpr double g_PI = 3.14159265358979323846;
+const double g_PI = 3.14159265358979323846;
 
 const int g_width  = 960;
 const int g_height = 720;
@@ -29,8 +31,7 @@ int main() {
 		return -1;
 	}
 
-	Vector2D test = get_camera_to_screen_pos({ 400, 100, -200 });
-	std::cout << test.x << " " << test.y << "\n";
+	test_coordinate_systems();
 
 	float x, y;
 
