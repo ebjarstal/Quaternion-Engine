@@ -39,6 +39,9 @@ float dotProduct(const Vector3D& v1, const Vector3D& v2);
 // Returns the cross product of two vectors.
 Vector3D crossProduct(const Vector3D& v1, const Vector3D& v2);
 
+// Returns true if the two given 3D vectors are orthogonal.
+bool areOrthogonal(const Vector3D& v1, const Vector3D& v2);
+
 
 
 // VECTOR4D

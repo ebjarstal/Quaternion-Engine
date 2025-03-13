@@ -73,6 +73,10 @@ Vector3D crossProduct(const Vector3D& v1, const Vector3D& v2) {
 	};
 }
 
+bool areOrthogonal(const Vector3D& v1, const Vector3D& v2) {
+	return dotProduct(v1, v2) == 0.f;
+}
+
 
 
 
