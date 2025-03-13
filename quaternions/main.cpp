@@ -56,6 +56,7 @@ int main() {
 	std::cout << test.x << " " << test.y << "\n";
 
 	Cube cube;
+	float x, y;
 
 	bool run_app = true;
 	while (run_app == true) {
@@ -67,6 +68,9 @@ int main() {
 				run_app = false;
 			}
 		}
+		SDL_GetMouseState(&x, &y);
+		cube.axis.x = x;
+		cube.axis.y = y;
 
 		cube.Draw(renderer);
 
