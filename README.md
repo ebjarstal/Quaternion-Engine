@@ -1,4 +1,4 @@
-This is a work in progress.
+This is a work in progress. I'm trying to make a very basic 3D engine from scratch, using only SDL3 to open a window and be able to draw pixels on the screen. Not sure if I'll ever add textures.
 
 Special thanks to the creators of the following resources. I studied them in order to work on this project:
 
