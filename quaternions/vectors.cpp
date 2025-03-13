@@ -1,5 +1,7 @@
 #include "vectors.h"
 
+// Vector3D DEFINITIONS
+
 std::ostream& operator<<(std::ostream& f, const Vector3D& v) {
 	// will print Vector3D under format (x, y, z)
 	f << "(" << v.x << ", " << v.y << ", " << v.z << ")";
@@ -69,4 +71,75 @@ Vector3D crossProduct(const Vector3D& v1, const Vector3D& v2) {
 		v1.z * v2.x - v1.x * v2.z,
 		v1.x * v2.y - v1.y * v2.x
 	};
+}
+
+
+
+
+// Vector4D DEFINITIONS
+
+std::ostream& operator<<(std::ostream& f, const Vector4D& v) {
+	// will print Vector4D under format (x, y, z, w)
+	f << "(" << v.x << ", " << v.y << ", " << v.z << ", " << v.w << ")";
+	return f;
+}
+
+Vector4D operator+(const Vector4D& v1, const Vector4D& v2) {
+	return {
+		v1.x + v2.x,
+		v1.y + v2.y,
+		v1.z + v2.z,
+		v1.w + v2.w
+	};
+}
+
+Vector4D operator-(const Vector4D& v1, const Vector4D& v2) {
+	return {
+		v1.x - v2.x,
+		v1.y - v2.y,
+		v1.z - v2.z,
+		v1.w - v2.w
+	};
+}
+
+Vector4D operator*(const Vector4D& v, const float& lambda) {
+	return {
+		lambda * v.x,
+		lambda * v.y,
+		lambda * v.z,
+		lambda * v.w
+	};
+}
+
+Vector4D operator*(const float& lambda, const Vector4D& v) {
+	return v * lambda;
+}
+
+Vector4D operator/(const Vector4D& v, const float& lambda) {
+	return {
+		v.x / lambda,
+		v.y / lambda,
+		v.z / lambda,
+		v.w / lambda
+	};
+}
+
+float Vector4D::getNorm() const {
+	return std::sqrt(x * x + y * y + z * z + w * w);
+}
+
+Vector4D Vector4D::getNormalized() const {
+	if (isUnit() == true) {
+		return *this;
+	}
+	return *this / getNorm();
+}
+
+bool Vector4D::isUnit() const {
+	return getNorm() == 1.f;
+}
+
+float dotProduct(const Vector4D& v1, const Vector4D& v2) {
+	// dot product of two the given Vector4D objects.
+	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
