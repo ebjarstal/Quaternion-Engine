@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+// VECTOR2D
 struct Vector2D {
 	float x, y;
 };
@@ -9,7 +10,7 @@ struct Vector2D {
 
 
 
-
+// VECTOR3D
 struct Vector3D {
 	float x, y, z;
 
@@ -40,8 +41,7 @@ Vector3D crossProduct(const Vector3D& v1, const Vector3D& v2);
 
 
 
-
-
+// VECTOR4D
 struct Vector4D {
 	float x, y, z, w;
 
