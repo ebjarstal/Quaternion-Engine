@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="coordinatesystems.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="projections.cpp" />
     <ClCompile Include="quaternions.cpp" />
@@ -139,9 +140,11 @@
     <ClCompile Include="vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="coordinatesystems.h" />
     <ClInclude Include="projections.h" />
     <ClInclude Include="quaternions.h" />
     <ClInclude Include="rotations.h" />
+    <ClInclude Include="tests.h" />
     <ClInclude Include="vectors.h" />
   </ItemGroup>
   <ItemGroup>
