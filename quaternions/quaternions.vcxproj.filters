@@ -27,7 +27,10 @@
     <ClCompile Include="rotations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="projection3Dto2D.cpp">
+    <ClCompile Include="projections.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +44,7 @@
     <ClInclude Include="rotations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="projection3Dto2D.h">
+    <ClInclude Include="projections.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

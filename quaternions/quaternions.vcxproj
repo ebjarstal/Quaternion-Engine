@@ -132,13 +132,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="projection3Dto2D.cpp" />
+    <ClCompile Include="projections.cpp" />
     <ClCompile Include="quaternions.cpp" />
     <ClCompile Include="rotations.cpp" />
+    <ClCompile Include="tests.cpp" />
     <ClCompile Include="vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="projection3Dto2D.h" />
+    <ClInclude Include="projections.h" />
     <ClInclude Include="quaternions.h" />
     <ClInclude Include="rotations.h" />
     <ClInclude Include="vectors.h" />
