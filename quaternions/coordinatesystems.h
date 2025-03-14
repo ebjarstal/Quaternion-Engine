@@ -18,8 +18,10 @@ public:
 };
 
 class CoordinateSystem {
-	Vector3D globalPosition;
 	OrthonormalFrame frame;
+
+public:
+	Vector3D globalPosition;
 
 public:
 	CoordinateSystem();
