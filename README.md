@@ -1,4 +1,4 @@
-This is a work in progress.
+This is a work in progress. I'm trying to make a very basic 3D engine from scratch, using only SDL3 to open a window and be able to draw pixels on the screen. Not sure if I'll ever add textures.
 
 Special thanks to the creators of the following resources. I studied them in order to work on this project:
 
@@ -13,3 +13,5 @@ https://en.wikipedia.org/wiki/Quaternion#Functions_of_a_quaternion_variable (_Qu
 https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation (_Quaternions and spatial rotation_ on Wikipedia)
 
 https://graphics.stanford.edu/courses/cs348a-17-winter/Papers/quaternion.pdf (_Quaternions and Rotations∗_ by Yan-Bin Jia published on Sep 10, 2013)
+
+https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point/mathematics-computing-2d-coordinates-of-3d-points.html (_Computing the Pixel Coordinates of a 3D Point_ published on scratchapixel.com)
