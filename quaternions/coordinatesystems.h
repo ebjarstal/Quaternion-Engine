@@ -27,9 +27,9 @@ public:
 	CoordinateSystem();
 	CoordinateSystem(Vector3D pos);
 
-	const Vector3D& getGlobalPosition() const;
 	OrthonormalFrame& getFrame();
 
 	void translate(const float& dx, const float& dy, const float& dz);
+	void translate(const Vector3D& dv);
 	void rotate(const Vector3D& axis, const float& angle);
 };

@@ -35,10 +35,6 @@ CoordinateSystem::CoordinateSystem() : globalPosition({ 0.f }), frame() {}
 
 CoordinateSystem::CoordinateSystem(Vector3D pos) : globalPosition(pos), frame() {}
 
-const Vector3D& CoordinateSystem::getGlobalPosition() const {
-	return globalPosition;
-}
-
 OrthonormalFrame& CoordinateSystem::getFrame() {
 	return frame;
 }
@@ -47,6 +43,10 @@ void CoordinateSystem::translate(const float& dx, const float& dy, const float& 
 	globalPosition.x += dx;
 	globalPosition.y += dy;
 	globalPosition.z += dz;
+}
+
+void CoordinateSystem::translate(const Vector3D& dv) {
+	globalPosition = globalPosition + dv;
 }
 
 void CoordinateSystem::rotate(const Vector3D& axis, const float& angle) {
