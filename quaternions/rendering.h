@@ -8,8 +8,7 @@
 extern const int g_Width;
 extern const int g_Height;
 
-extern SDL_Renderer* renderer;
-
+extern       SDL_Renderer*    renderer;
 extern const CoordinateSystem g_WorldCoordinateSystem;
 
 void renderObject(const Object& object);

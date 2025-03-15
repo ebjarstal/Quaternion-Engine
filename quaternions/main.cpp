@@ -35,7 +35,7 @@ int main() {
 		return -1;
 	}
 
-	Cube cube(0xFF, 0, 0, 0xFF, 200.f);
+	Cube cube(200.f);
 
 	bool rotate_cube = false;
 	bool run_app = true;
