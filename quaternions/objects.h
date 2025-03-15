@@ -10,6 +10,7 @@ class Object {
 protected:
 	CoordinateSystem localCoordinateSystem;
 	std::vector<Vector3D> points;
+	virtual void initPoints() = 0;
 
 public:
 	uint8_t r, g, b, a;
@@ -21,6 +22,7 @@ public:
 	Object(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_);
 
 	virtual const std::vector<Vector3D> getPoints() const;
+	const CoordinateSystem& getCoordinateSystem() const;
 
 	void rotate(const Vector3D& axis, const float& angle);
 	void translate(const Vector3D& v);
@@ -30,7 +32,10 @@ public:
 
 class Cube : public Object {
 	float size;
-	// 8 points by default
+	
+	// Initializes all the Cube's points in an ordered way so that all its edges can
+	// be rendered in a for loop with two points per iteration
+	void initPoints();
 
 public:
 	Cube();
