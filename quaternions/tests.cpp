@@ -43,7 +43,7 @@ void test_coordinate_systems() {
 	CoordinateSystem cs1;
 	CoordinateSystem cs2({ 10.f, 10.f, -20.f });
 
-	std::cout << "cs1 pos: " << cs1.globalPosition << "\n";
+	std::cout << "cs1 pos: " << cs1.origin << "\n";
 	std::cout << "cs1 frame pos: "
 		<< cs1.getFrame().getX() << " "
 		<< cs1.getFrame().getY() << " "
@@ -52,16 +52,16 @@ void test_coordinate_systems() {
 	cs1.translate(1.f, -3.4f, -0.4f);
 
 	std::cout << "cs1 after translation\n";
-	std::cout << "cs1 pos: " << cs1.globalPosition << "\n";
+	std::cout << "cs1 pos: " << cs1.origin << "\n";
 	std::cout << "cs1 frame pos: "
 		<< cs1.getFrame().getX() << " "
 		<< cs1.getFrame().getY() << " "
 		<< cs1.getFrame().getZ() << "\n\n";
 
-	cs1.rotate({ 1.f, 1.f, 1.f }, g_PI);
+	cs1.rotateAroundOrigin({ 1.f, 1.f, 1.f }, g_PI);
 
 	std::cout << "cs1 after rotation\n";
-	std::cout << "cs1 pos: " << cs1.globalPosition << "\n";
+	std::cout << "cs1 pos: " << cs1.origin << "\n";
 	std::cout << "cs1 frame pos: "
 		<< cs1.getFrame().getX() << " "
 		<< cs1.getFrame().getY() << " "
@@ -70,22 +70,22 @@ void test_coordinate_systems() {
 	cs1.getFrame().rotate({ 1, 1, 1 }, g_PI / 3.f);
 
 	std::cout << "cs1 after frame rotation\n";
-	std::cout << "cs1 pos: " << cs1.globalPosition << "\n";
+	std::cout << "cs1 pos: " << cs1.origin << "\n";
 	std::cout << "cs1 frame pos: "
 		<< cs1.getFrame().getX() << " "
 		<< cs1.getFrame().getY() << " "
 		<< cs1.getFrame().getZ() << "\n\n";
 
-	std::cout << "cs2 pos: " << cs2.globalPosition << "\n";
+	std::cout << "cs2 pos: " << cs2.origin << "\n";
 	std::cout << "cs2 frame pos: "
 		<< cs2.getFrame().getX() << " "
 		<< cs2.getFrame().getY() << " "
 		<< cs2.getFrame().getZ() << "\n\n";
 
-	cs2.rotate({ 0, 0, 1.f }, g_PI / 2.f);
+	cs2.rotateAroundOrigin({ 0, 0, 1.f }, g_PI / 2.f);
 
 	std::cout << "cs2 after rotation\n";
-	std::cout << "cs2 pos: " << cs2.globalPosition << "\n";
+	std::cout << "cs2 pos: " << cs2.origin << "\n";
 	std::cout << "cs2 frame pos: "
 		<< cs2.getFrame().getX() << " "
 		<< cs2.getFrame().getY() << " "
@@ -94,7 +94,7 @@ void test_coordinate_systems() {
 	cs2.translate(4.f, 2.3f, -6.1);
 
 	std::cout << "cs2 after translation\n";
-	std::cout << "cs2 pos: " << cs2.globalPosition << "\n";
+	std::cout << "cs2 pos: " << cs2.origin << "\n";
 	std::cout << "cs2 frame pos: "
 		<< cs2.getFrame().getX() << " "
 		<< cs2.getFrame().getY() << " "

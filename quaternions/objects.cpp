@@ -14,25 +14,35 @@ Object::Object(Vector3D pos) :
 Object::Object(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_) :
 	localCoordinateSystem(pos), points(), r(r_), g(g_), b(b_), a(a_) {}
 
-const std::vector<Vector3D> Object::getPoints() const {
+const Vector3D& Object::getCenter() const {
+	return localCoordinateSystem.origin;
+}
+
+const std::vector<Vector3D> Object::getPointsLocal() const {
 	return points;
+}
+
+const std::vector<Vector3D> Object::getPointsGlobal() const {
+	std::vector<Vector3D> points_global;
+	for (const Vector3D& point : points) {
+		points_global.push_back(point + getCenter());
+	}
+	return points_global;
 }
 
 const CoordinateSystem& Object::getCoordinateSystem() const {
 	return localCoordinateSystem;
 };
 
-void Object::rotate(const Vector3D& axis, const float& angle) {
+void Object::rotateAroundCenter(const Vector3D& axis, const float& angle) {
+	localCoordinateSystem.rotateAroundOrigin(axis, angle);
 	for (Vector3D& point : points) {
 		rotatePoint(point, axis, angle);
 	}
 }
 
-void Object::translate(const Vector3D& v) {
-	localCoordinateSystem.globalPosition = localCoordinateSystem.globalPosition + v;
-	for (Vector3D& point : points) {
-		point = point + v;
-	}
+void Object::translate(const Vector3D& dv) {
+	localCoordinateSystem.translate(dv);
 }
 
 
@@ -44,55 +54,52 @@ void Object::translate(const Vector3D& v) {
 // CUBE METHODS
 
 Cube::Cube() : Object(), size(0.f) {
-	initPoints();
+	generateLocalPoints();
 }
 
 Cube::Cube(uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_) : Object(r_, g_, b_, a_), size(0.f) {
 
-	initPoints();
+	generateLocalPoints();
 }
 
 Cube::Cube(Vector3D pos) : Object(pos), size(0.f) {
-	initPoints();
+	generateLocalPoints();
 }
 
 Cube::Cube(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_) : Object(pos, r_, g_, b_, a_), size(0.f) {
-	initPoints();
+	generateLocalPoints();
 }
 
 Cube::Cube(float s) : Object(), size(s) {
-	initPoints();
+	generateLocalPoints();
 }
 
 Cube::Cube(uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s) : Object(r_, g_, b_, a_), size(s) {
-	initPoints();
+	generateLocalPoints();
 }
 
 Cube::Cube(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s) : Object(pos, r_, g_, b_, a_), size(s) {
-	initPoints();
+	generateLocalPoints();
 }
 
-void Cube::initPoints() {
-	Vector3D center_pos = localCoordinateSystem.globalPosition;
+void Cube::generateLocalPoints() {
+	points.clear();
 
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y - size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y - size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y - size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y - size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y - size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y + size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y + size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y - size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y + size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y + size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y - size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y + size / 2.f, center_pos.z + size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y + size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y - size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x + size / 2.f, center_pos.y + size / 2.f, center_pos.z - size / 2.f });
-	points.push_back({ center_pos.x - size / 2.f, center_pos.y + size / 2.f, center_pos.z - size / 2.f });
-}
+	points.push_back({ -size / 2.f, -size / 2.f, -size / 2.f });
+	points.push_back({ -size / 2.f, -size / 2.f,  size / 2.f });
+	points.push_back({ size / 2.f, -size / 2.f,  size / 2.f });
+	points.push_back({ size / 2.f, -size / 2.f, -size / 2.f });
+	points.push_back({ -size / 2.f, -size / 2.f, -size / 2.f });
+	points.push_back({ -size / 2.f,  size / 2.f, -size / 2.f });
+	points.push_back({ -size / 2.f,  size / 2.f,  size / 2.f });
+	points.push_back({ -size / 2.f, -size / 2.f,  size / 2.f });
+	points.push_back({ -size / 2.f,  size / 2.f,  size / 2.f });
+	points.push_back({ size / 2.f,  size / 2.f,  size / 2.f });
+	points.push_back({ size / 2.f, -size / 2.f,  size / 2.f });
+	points.push_back({ size / 2.f,  size / 2.f,  size / 2.f });
+	points.push_back({ size / 2.f,  size / 2.f, -size / 2.f });
+	points.push_back({ size / 2.f, -size / 2.f, -size / 2.f });
+	points.push_back({ size / 2.f,  size / 2.f, -size / 2.f });
+	points.push_back({ -size / 2.f,  size / 2.f, -size / 2.f });
 
-const std::vector<Vector3D> Cube::getPoints() const {
-	return points;
 }

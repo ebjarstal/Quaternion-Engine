@@ -9,15 +9,15 @@ OrthonormalFrame::OrthonormalFrame() {
 	frame_vectors[2] = { 0.f, 0.f, 1.f };
 }
 
-const Vector3D& OrthonormalFrame::getX() {
+const Vector3D& OrthonormalFrame::getX() const {
 	return frame_vectors[0];
 }
 
-const Vector3D& OrthonormalFrame::getY() {
+const Vector3D& OrthonormalFrame::getY() const {
 	return frame_vectors[1];
 }
 
-const Vector3D& OrthonormalFrame::getZ() {
+const Vector3D& OrthonormalFrame::getZ() const {
 	return frame_vectors[2];
 }
 
@@ -31,24 +31,24 @@ void OrthonormalFrame::rotate(const Vector3D& axis, const float& angle) {
 
 
 
-CoordinateSystem::CoordinateSystem() : globalPosition({ 0.f }), frame() {}
+CoordinateSystem::CoordinateSystem() : origin({ 0.f }), frame() {}
 
-CoordinateSystem::CoordinateSystem(Vector3D pos) : globalPosition(pos), frame() {}
+CoordinateSystem::CoordinateSystem(Vector3D pos) : origin(pos), frame() {}
 
 OrthonormalFrame& CoordinateSystem::getFrame() {
 	return frame;
 }
 
 void CoordinateSystem::translate(const float& dx, const float& dy, const float& dz) {
-	globalPosition.x += dx;
-	globalPosition.y += dy;
-	globalPosition.z += dz;
+	origin.x += dx;
+	origin.y += dy;
+	origin.z += dz;
 }
 
 void CoordinateSystem::translate(const Vector3D& dv) {
-	globalPosition = globalPosition + dv;
+	origin = origin + dv;
 }
 
-void CoordinateSystem::rotate(const Vector3D& axis, const float& angle) {
-	rotatePoint(globalPosition, axis, angle);
+void CoordinateSystem::rotateAroundOrigin(const Vector3D& axis, const float& angle) {
+	frame.rotate(axis, angle);
 }

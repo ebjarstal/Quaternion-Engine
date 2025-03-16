@@ -66,7 +66,7 @@ int main() {
 			}
 		}
 
-		if (rotate_cube == true) cube.rotate({ 1.f, 1.f, 1.f }, g_PI / (2.f * 3600.f));
+		if (rotate_cube == true) cube.rotateAroundCenter({ 1.f, 1.f, 1.f }, g_PI / (2.f * 3600.f));
 		renderObject(cube);
 
 		SDL_RenderPresent(renderer);

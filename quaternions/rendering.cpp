@@ -1,7 +1,7 @@
 #include "rendering.h"
 
 void renderObject(const Object& object) {
-	std::vector<Vector3D> points = object.getPoints();
+	const std::vector<Vector3D> points = object.getPointsGlobal();
 	SDL_SetRenderDrawColor(renderer, object.r, object.g, object.b, object.a);
 	
 	for (int i = 0; i < points.size() - 1; i++) {

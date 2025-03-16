@@ -10,9 +10,9 @@ class OrthonormalFrame {
 public:
 	OrthonormalFrame();
 
-	const Vector3D& getX();
-	const Vector3D& getY();
-	const Vector3D& getZ();
+	const Vector3D& getX() const;
+	const Vector3D& getY() const;
+	const Vector3D& getZ() const;
 
 	void rotate(const Vector3D& axis, const float& angle);
 };
@@ -21,7 +21,8 @@ class CoordinateSystem {
 	OrthonormalFrame frame;
 
 public:
-	Vector3D globalPosition;
+	// global position
+	Vector3D origin;
 
 public:
 	CoordinateSystem();
@@ -31,5 +32,5 @@ public:
 
 	void translate(const float& dx, const float& dy, const float& dz);
 	void translate(const Vector3D& dv);
-	void rotate(const Vector3D& axis, const float& angle);
+	void rotateAroundOrigin(const Vector3D& axis, const float& angle);
 };

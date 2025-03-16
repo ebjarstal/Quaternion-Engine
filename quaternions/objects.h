@@ -8,9 +8,10 @@
 // Abstract Object class
 class Object {
 protected:
+	// From the perspective of the object, the coordinates of its points are relative to its center
+	// Therefore when the object gets rotated, the axis of rotation's origin is the object's center
 	CoordinateSystem localCoordinateSystem;
 	std::vector<Vector3D> points;
-	virtual void initPoints() = 0;
 
 public:
 	uint8_t r, g, b, a;
@@ -21,21 +22,29 @@ public:
 	Object(Vector3D pos);
 	Object(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_);
 
-	virtual const std::vector<Vector3D> getPoints() const;
+	const Vector3D& getCenter() const;
+
+	const std::vector<Vector3D> getPointsLocal() const;
+	const std::vector<Vector3D> getPointsGlobal() const;
+
 	const CoordinateSystem& getCoordinateSystem() const;
 
-	void rotate(const Vector3D& axis, const float& angle);
-	void translate(const Vector3D& v);
+	void rotateAroundCenter(const Vector3D& axis, const float& angle);
+	void translate(const Vector3D& dv);
 
 	virtual ~Object() = default;
+
+protected:
+	virtual void generateLocalPoints() = 0;
 };
 
+// Made this class just for testing purposes
 class Cube : public Object {
 	float size;
 	
 	// Initializes all the Cube's points in an ordered way so that all its edges can
 	// be rendered in a for loop with two points per iteration
-	void initPoints();
+	void generateLocalPoints();
 
 public:
 	Cube();
@@ -45,6 +54,4 @@ public:
 	Cube(float s);
 	Cube(uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s);
 	Cube(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s);
-
-	const std::vector<Vector3D> getPoints() const override;
 };
