@@ -11,4 +11,5 @@ extern const int g_Height;
 extern       SDL_Renderer*    renderer;
 extern const CoordinateSystem g_WorldCoordinateSystem;
 
+// Renders the given object using the global renderer.
 void renderObject(const Object& object);

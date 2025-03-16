@@ -5,11 +5,9 @@
 #include "rotations.h"
 #include "coordinatesystems.h"
 
-// Abstract Object class
+// The mother class of all 3D objects meant to be drawn in the Quaternion engine.
 class Object {
 protected:
-	// From the perspective of the object, the coordinates of its points are relative to its center
-	// Therefore when the object gets rotated, the axis of rotation's origin is the object's center
 	CoordinateSystem localCoordinateSystem;
 	std::vector<Vector3D> points;
 
@@ -22,24 +20,38 @@ public:
 	Object(Vector3D pos);
 	Object(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_);
 
+	// Returns the object's calculated centroid.
 	Vector3D getCentroid() const;
 
+	// Returns a vector of all the object's points with their local coordinates.
 	const std::vector<Vector3D> getPointsLocal()  const;
-	      std::vector<Vector3D> getPointsGlobal() const;
 
+	// Returns a vector of all the object's points with their global coordinates.
+	std::vector<Vector3D> getPointsGlobal() const;
+
+	// Returns the object's local coordinate system.
 	const CoordinateSystem& getCoordinateSystem() const;
 
+	// Rotates all the object's points by a given angle around a given axis.
+	// Note that the axis' origin is located at the center of the object's local coordinate system.
 	void rotateAroundCenter(const Vector3D& axis, const float& angle);
 
+	// Translates the object by a given displacement.
 	void translate(const Vector3D& dv);
+
+	// Translates the object by a given displacement.
 	void translate(const float& dx, const float& dy, const float& dz);
 
+	// Moves the center of the object to the given position.
 	void moveTo(const Vector3D& pos);
+
+	// Moves the center of the object to the given position.
 	void moveTo(const float& dx, const float& dy, const float& dz);
 
 	virtual ~Object() = default;
 
 protected:
+	// This method is used to generate the object's points within the constructor.
 	virtual void generatePointsLocal() = 0;
 };
 
