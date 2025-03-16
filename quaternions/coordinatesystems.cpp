@@ -49,6 +49,14 @@ void CoordinateSystem::translate(const Vector3D& dv) {
 	origin = origin + dv;
 }
 
+void CoordinateSystem::moveTo(const Vector3D& pos) {
+	origin = pos;
+}
+
+void CoordinateSystem::moveTo(const float& dx, const float& dy, const float& dz) {
+	origin = { dx, dy, dz };
+}
+
 void CoordinateSystem::rotateAroundOrigin(const Vector3D& axis, const float& angle) {
 	frame.rotate(axis, angle);
 }

@@ -32,5 +32,7 @@ public:
 
 	void translate(const float& dx, const float& dy, const float& dz);
 	void translate(const Vector3D& dv);
+	void moveTo(const Vector3D& pos);
+	void moveTo(const float& dx, const float& dy, const float& dz);
 	void rotateAroundOrigin(const Vector3D& axis, const float& angle);
 };
