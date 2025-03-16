@@ -42,6 +42,12 @@
     <ClCompile Include="rendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cameras.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rays.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="quaternions.h">
@@ -66,6 +72,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rendering.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cameras.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rays.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

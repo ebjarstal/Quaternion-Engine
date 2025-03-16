@@ -131,21 +131,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cameras.cpp" />
     <ClCompile Include="coordinatesystems.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="objects.cpp" />
     <ClCompile Include="projections.cpp" />
     <ClCompile Include="quaternions.cpp" />
+    <ClCompile Include="rays.cpp" />
     <ClCompile Include="rendering.cpp" />
     <ClCompile Include="rotations.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cameras.h" />
     <ClInclude Include="coordinatesystems.h" />
     <ClInclude Include="objects.h" />
     <ClInclude Include="projections.h" />
     <ClInclude Include="quaternions.h" />
+    <ClInclude Include="rays.h" />
     <ClInclude Include="rendering.h" />
     <ClInclude Include="rotations.h" />
     <ClInclude Include="tests.h" />
