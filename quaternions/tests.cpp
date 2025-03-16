@@ -67,7 +67,7 @@ void test_coordinate_systems() {
 		<< cs1.getFrame().getY() << " "
 		<< cs1.getFrame().getZ() << "\n\n";
 
-	cs1.getFrame().rotate({ 1, 1, 1 }, g_PI / 3.f);
+	cs1.rotateAroundOrigin({ 1, 1, 1 }, g_PI / 3.f);
 
 	std::cout << "cs1 after frame rotation\n";
 	std::cout << "cs1 pos: " << cs1.origin << "\n";
