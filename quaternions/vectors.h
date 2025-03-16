@@ -21,6 +21,8 @@ public:
 	// Returns the normalized vector relative to the vector.
 	Vector3D getNormalized() const;
 
+	void setNorm(const float& new_magnitude);
+
 	// Returns true if the norm of the vector is 1. Returns false otherwise.
 	bool isUnit() const;
 };

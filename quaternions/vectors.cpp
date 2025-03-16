@@ -55,6 +55,12 @@ Vector3D Vector3D::getNormalized() const {
 	return *this / getNorm();
 }
 
+void Vector3D::setNorm(const float& new_norm) {
+	x = x * new_norm / getNorm();
+	y = y * new_norm / getNorm();
+	z = z * new_norm / getNorm();
+}
+
 bool Vector3D::isUnit() const {
 	return getNorm() == 1.f;
 }
