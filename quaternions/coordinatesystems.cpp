@@ -35,7 +35,7 @@ CoordinateSystem::CoordinateSystem() : origin({ 0.f }), frame() {}
 
 CoordinateSystem::CoordinateSystem(Vector3D pos) : origin(pos), frame() {}
 
-OrthonormalFrame& CoordinateSystem::getFrame() {
+const OrthonormalFrame& CoordinateSystem::getFrame() const {
 	return frame;
 }
 
