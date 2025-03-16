@@ -36,6 +36,7 @@ int main() {
 	}
 
 	Cube cube(200.f);
+	float x, y;
 
 	bool rotate_cube = false;
 	bool run_app = true;
@@ -63,6 +64,14 @@ int main() {
 				if (event.key.scancode == SDL_SCANCODE_LEFT) {
 					cube.translate({ -10.f, 0.f, 0.f });
 				}
+			}
+			if (event.type == SDL_EVENT_MOUSE_MOTION) {
+				if (SDL_GetMouseState(&x, &y) == 1) {
+					cube.moveTo(x - g_Width / 2.f, y - g_Height / 2.f, 0);
+				}
+			}
+			if (event.type == SDL_EVENT_MOUSE_WHEEL) {
+				cube.setSize(cube.getSize() + event.wheel.y);
 			}
 		}
 
