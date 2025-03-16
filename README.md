@@ -1,4 +1,4 @@
-This is a work in progress. I'm trying to make a very basic 3D engine from scratch, using only SDL3 to open a window and be able to draw pixels on the screen. Not sure if I'll ever add textures.
+This is a work in progress. I'm trying to make a very basic 3D engine from scratch, using only SDL3 to handle drawing pixels on the screen. The engine is not intended to be used professionally. It is very imperfect and lacks optimization. The main goal of this project for me is to learn a lot of fundamentals about the world of 3D computing and 3D graphics.
 
 Special thanks to the creators of the following resources. I studied them in order to work on this project:
 
