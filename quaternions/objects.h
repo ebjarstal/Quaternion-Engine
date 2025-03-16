@@ -22,15 +22,20 @@ public:
 	Object(Vector3D pos);
 	Object(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_);
 
-	const Vector3D& getCenter() const;
+	Vector3D getCentroid() const;
 
-	const std::vector<Vector3D> getPointsLocal() const;
-	const std::vector<Vector3D> getPointsGlobal() const;
+	const std::vector<Vector3D> getPointsLocal()  const;
+	      std::vector<Vector3D> getPointsGlobal() const;
 
 	const CoordinateSystem& getCoordinateSystem() const;
 
 	void rotateAroundCenter(const Vector3D& axis, const float& angle);
+
 	void translate(const Vector3D& dv);
+	void translate(const float& dx, const float& dy, const float& dz);
+
+	void moveTo(const Vector3D& pos);
+	void moveTo(const float& dx, const float& dy, const float& dz);
 
 	virtual ~Object() = default;
 
@@ -54,4 +59,8 @@ public:
 	Cube(float s);
 	Cube(uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s);
 	Cube(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s);
+
+	const float& getSize() const;
+
+	void setSize(const float& new_size);
 };

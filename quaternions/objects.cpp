@@ -14,18 +14,22 @@ Object::Object(Vector3D pos) :
 Object::Object(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_) :
 	localCoordinateSystem(pos), points(), r(r_), g(g_), b(b_), a(a_) {}
 
-const Vector3D& Object::getCenter() const {
-	return localCoordinateSystem.origin;
+Vector3D Object::getCentroid() const {
+	Vector3D center = { 0, 0, 0 };
+	for (const Vector3D& point : points) {
+		center = center + point;
+	}
+	return center / points.size();
 }
 
 const std::vector<Vector3D> Object::getPointsLocal() const {
 	return points;
 }
 
-const std::vector<Vector3D> Object::getPointsGlobal() const {
+std::vector<Vector3D> Object::getPointsGlobal() const {
 	std::vector<Vector3D> points_global;
 	for (const Vector3D& point : points) {
-		points_global.push_back(point + getCenter());
+		points_global.push_back(point + localCoordinateSystem.origin);
 	}
 	return points_global;
 }
@@ -43,6 +47,18 @@ void Object::rotateAroundCenter(const Vector3D& axis, const float& angle) {
 
 void Object::translate(const Vector3D& dv) {
 	localCoordinateSystem.translate(dv);
+}
+
+void Object::translate(const float& dx, const float& dy, const float& dz) {
+	localCoordinateSystem.translate(dx, dy, dz);
+}
+
+void Object::moveTo(const Vector3D& pos) {
+	localCoordinateSystem.moveTo(pos);
+}
+
+void Object::moveTo(const float& dx, const float& dy, const float& dz) {
+	localCoordinateSystem.moveTo(dx, dy, dz);
 }
 
 
@@ -102,4 +118,21 @@ void Cube::generatePointsLocal() {
 	points.push_back({ size / 2.f,  size / 2.f, -size / 2.f });
 	points.push_back({ -size / 2.f,  size / 2.f, -size / 2.f });
 
+}
+
+const float& Cube::getSize() const {
+	return size;
+}
+
+void Cube::setSize(const float& new_size) {
+	// adjust the distance of all the points from the center
+	const float ratio = new_size / size;
+	// calculate the actual center of mass of cube
+	// even though it should technically be (0, 0, 0) locally
+	// because numerically the points of the cube aren't infinitely precise
+	const Vector3D center = getCentroid();
+	for (Vector3D& point : points) {
+		point = center + (point - center) * ratio;
+	}
+	size = new_size;
 }
