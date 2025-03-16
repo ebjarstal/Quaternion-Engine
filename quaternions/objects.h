@@ -35,7 +35,7 @@ public:
 	virtual ~Object() = default;
 
 protected:
-	virtual void generateLocalPoints() = 0;
+	virtual void generatePointsLocal() = 0;
 };
 
 // Made this class just for testing purposes
@@ -44,7 +44,7 @@ class Cube : public Object {
 	
 	// Initializes all the Cube's points in an ordered way so that all its edges can
 	// be rendered in a for loop with two points per iteration
-	void generateLocalPoints();
+	void generatePointsLocal();
 
 public:
 	Cube();

@@ -54,35 +54,35 @@ void Object::translate(const Vector3D& dv) {
 // CUBE METHODS
 
 Cube::Cube() : Object(), size(0.f) {
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
 Cube::Cube(uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_) : Object(r_, g_, b_, a_), size(0.f) {
 
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
 Cube::Cube(Vector3D pos) : Object(pos), size(0.f) {
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
 Cube::Cube(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_) : Object(pos, r_, g_, b_, a_), size(0.f) {
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
 Cube::Cube(float s) : Object(), size(s) {
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
 Cube::Cube(uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s) : Object(r_, g_, b_, a_), size(s) {
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
 Cube::Cube(Vector3D pos, uint8_t r_, uint8_t g_, uint8_t b_, uint8_t a_, float s) : Object(pos, r_, g_, b_, a_), size(s) {
-	generateLocalPoints();
+	generatePointsLocal();
 }
 
-void Cube::generateLocalPoints() {
+void Cube::generatePointsLocal() {
 	points.clear();
 
 	points.push_back({ -size / 2.f, -size / 2.f, -size / 2.f });
