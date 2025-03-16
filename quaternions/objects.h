@@ -32,6 +32,9 @@ public:
 	// Returns the object's local coordinate system.
 	const CoordinateSystem& getCoordinateSystem() const;
 
+	// Changes the object's color to the given RGBA values.
+	void setColor(const uint8_t new_r, const uint8_t new_g, const uint8_t new_b, const uint8_t new_a);
+
 	// Rotates all the object's points by a given angle around a given axis.
 	// Note that the axis' origin is located at the center of the object's local coordinate system.
 	void rotateAroundCenter(const Vector3D& axis, const float& angle);

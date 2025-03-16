@@ -38,11 +38,16 @@ const CoordinateSystem& Object::getCoordinateSystem() const {
 	return localCoordinateSystem;
 };
 
+void Object::setColor(const uint8_t new_r, const uint8_t new_g, const uint8_t new_b, const uint8_t new_a) {
+	r = new_r;
+	g = new_g;
+	b = new_b;
+	a = new_a;
+}
+
 void Object::rotateAroundCenter(const Vector3D& axis, const float& angle) {
 	localCoordinateSystem.rotateAroundOrigin(axis, angle);
-	for (Vector3D& point : points) {
-		rotatePoint(point, axis, angle);
-	}
+	rotatePoints(points, axis, angle);
 }
 
 void Object::translate(const Vector3D& dv) {
@@ -125,7 +130,6 @@ const float& Cube::getSize() const {
 }
 
 void Cube::setSize(const float& new_size) {
-	// adjust the distance of all the points from the center
 	const float ratio = new_size / size;
 	// calculate the actual center of mass of cube
 	// even though it should technically be (0, 0, 0) locally
