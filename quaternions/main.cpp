@@ -36,6 +36,7 @@ int main() {
 	}
 
 	Cube cube(200.f);
+	cube.setColor(0xFF, 0x00, 0x00, 0xFF);
 	float x, y;
 
 	bool rotate_cube = false;
