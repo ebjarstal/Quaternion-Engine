@@ -19,7 +19,7 @@ const Vector3D& Ray::getTarget() const {
 	return target;
 }
 
-Vector3D Ray::getVector() const {
+Vector3D Ray::getDirectionVector() const {
 	return (target - origin);
 }
 

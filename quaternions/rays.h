@@ -21,7 +21,8 @@ public:
 	// Returns the target point of the ray.
 	const Vector3D& getTarget() const;
 
-	Vector3D getVector() const;
+	// Returns the direction vector of the ray.
+	Vector3D getDirectionVector() const;
 
 	// Returns the length of the ray.
 	// It corresponds to the distance between the origin and the target.
