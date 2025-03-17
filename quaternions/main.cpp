@@ -6,6 +6,7 @@
 #include "rotations.h"
 #include "coordinatesystems.h"
 #include "projections.h"
+#include "rays.h"
 #include "objects.h"
 #include "rendering.h"
 #include "tests.h"
@@ -23,7 +24,7 @@ SDL_Window*   window   = nullptr;
 SDL_Renderer* renderer = nullptr;
 
 const CoordinateSystem g_WorldCoordinateSystem;
-CoordinateSystem g_Camera({ 0.f, 0.f, 10.f });
+Camera3D g_Camera({ 0.f, 0.f, 10.f });
 
 int main() {
 	if (SDL_Init(SDL_INIT_VIDEO) == false) {
@@ -35,7 +36,12 @@ int main() {
 		return -1;
 	}
 
+	ProjectionSurface ps1;
+	Ray r1{ {2, 2, -5}, {0, 0, 10} };
+	std::cout << ps1.getIntersectionPoint(r1) << "\n";
+
 	Cube cube(200.f);
+	cube.moveTo({ 0, 0, -50});
 	cube.setColor(0xFF, 0x00, 0x00, 0xFF);
 	float x, y;
 
@@ -77,7 +83,7 @@ int main() {
 		}
 
 		if (rotate_cube == true) cube.rotateAroundCenter({ 1.f, 1.f, 1.f }, g_PI / (2.f * 3600.f));
-		renderObject(cube);
+		renderObject(g_Camera, cube);
 
 		SDL_RenderPresent(renderer);
 	}
