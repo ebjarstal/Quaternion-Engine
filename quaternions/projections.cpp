@@ -21,5 +21,7 @@ ProjectionSurface::ProjectionSurface(int w, int h, Vector3D pos)
 }
 
 Vector2D ProjectionSurface::getIntersectionPoint(const Ray& ray) const {
-	// TODO
+	const float t = (float) -ray.getOrigin().z / ray.getDirectionVector().z;
+	const Vector3D collision_point = ray.getOrigin() + t * ray.getDirectionVector();
+	return { collision_point.x, collision_point.y };
 }
