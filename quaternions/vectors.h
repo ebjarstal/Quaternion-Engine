@@ -7,6 +7,8 @@ struct Vector2D {
 	float x, y;
 };
 
+std::ostream& operator<<(std::ostream& f, const Vector2D& v);
+
 
 
 

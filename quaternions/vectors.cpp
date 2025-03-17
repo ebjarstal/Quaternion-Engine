@@ -1,5 +1,13 @@
 #include "vectors.h"
 
+// Vector2D DEFINITIONS
+
+std::ostream& operator<<(std::ostream& f, const Vector2D& v) {
+	// will print Vector3D under format (x, y)
+	f << "(" << v.x << ", " << v.y << ")";
+	return f;
+}
+
 // Vector3D DEFINITIONS
 
 std::ostream& operator<<(std::ostream& f, const Vector3D& v) {
