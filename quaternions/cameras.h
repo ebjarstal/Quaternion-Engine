@@ -11,4 +11,7 @@ class Camera3D {
 public:
 	Camera3D();
 	Camera3D(Vector3D pos);
+
+	const Vector3D& getPositionGlobal() const;
+	const ProjectionSurface& getProjectionSurface() const;
 };
