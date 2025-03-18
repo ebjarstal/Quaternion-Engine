@@ -79,3 +79,13 @@ public:
 
 	void setSize(const float& new_size);
 };
+
+class Pyramid : public Object {
+	float base_size;
+	float height;
+
+	void generatePointsLocal();
+
+public:
+	Pyramid();
+};

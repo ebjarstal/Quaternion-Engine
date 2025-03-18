@@ -140,3 +140,23 @@ void Cube::setSize(const float& new_size) {
 	}
 	size = new_size;
 }
+
+Pyramid::Pyramid() : base_size(100.f), height(150.f) {
+	generatePointsLocal();
+}
+
+void Pyramid::generatePointsLocal() {
+	points.clear();
+
+	points.push_back({ -base_size / 2.f, -height / 2.f, -base_size / 2.f });
+	points.push_back({ -base_size / 2.f, -height / 2.f,  base_size / 2.f });
+	points.push_back({ base_size / 2.f, -height / 2.f,  base_size / 2.f });
+	points.push_back({ base_size / 2.f, -height / 2.f, -base_size / 2.f });
+	points.push_back({ -base_size / 2.f, -height / 2.f, -base_size / 2.f });
+	points.push_back({ 0, height / 2.f, 0 });
+	points.push_back({ -base_size / 2.f, -height / 2.f, base_size / 2.f });
+	points.push_back({ 0, height / 2.f, 0 });
+	points.push_back({ base_size / 2.f, -height / 2.f, base_size / 2.f });
+	points.push_back({ 0, height / 2.f, 0 });
+	points.push_back({ base_size / 2.f, -height / 2.f, -base_size / 2.f });
+}
