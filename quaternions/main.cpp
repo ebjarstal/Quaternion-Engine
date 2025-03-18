@@ -24,7 +24,7 @@ SDL_Window*   window   = nullptr;
 SDL_Renderer* renderer = nullptr;
 
 const CoordinateSystem g_WorldCoordinateSystem;
-Camera3D g_Camera({ 0.f, 0.f, 10.f });
+Camera3D g_Camera({ 0.f, 0.f, 500.f });
 
 int main() {
 	if (SDL_Init(SDL_INIT_VIDEO) == false) {
@@ -40,10 +40,14 @@ int main() {
 	Ray r1{ {2, 2, -5}, {0, 0, 10} };
 	std::cout << ps1.getIntersectionPoint(r1) << "\n";
 
-	Cube cube(200.f);
-	cube.moveTo({ 0, 0, -50});
+	Cube cube(120.f);
+	cube.moveTo({ 0, 0, -100});
 	cube.setColor(0xFF, 0x00, 0x00, 0xFF);
 	float x, y;
+
+	Pyramid p;
+	p.moveTo(0, 0, -100);
+	p.setColor(0, 0xFF, 0, 0xFF);
 
 	bool rotate_cube = false;
 	bool run_app = true;
@@ -60,16 +64,16 @@ int main() {
 					rotate_cube = !rotate_cube;
 				}
 				if (event.key.scancode == SDL_SCANCODE_UP) {
-					cube.translate({ 0.f, -10.f, 0.f });
+					p.translate({ 0.f, -10.f, 0.f });
 				}
 				if (event.key.scancode == SDL_SCANCODE_DOWN) {
-					cube.translate({ 0.f, 10.f, 0.f });
+					p.translate({ 0.f, 10.f, 0.f });
 				}
 				if (event.key.scancode == SDL_SCANCODE_RIGHT) {
-					cube.translate({ 10.f, 0.f, 0.f });
+					p.translate({ 10.f, 0.f, 0.f });
 				}
 				if (event.key.scancode == SDL_SCANCODE_LEFT) {
-					cube.translate({ -10.f, 0.f, 0.f });
+					p.translate({ -10.f, 0.f, 0.f });
 				}
 			}
 			if (event.type == SDL_EVENT_MOUSE_MOTION) {
@@ -82,7 +86,11 @@ int main() {
 			}
 		}
 
-		if (rotate_cube == true) cube.rotateAroundCenter({ 1.f, 1.f, 1.f }, g_PI / (2.f * 3600.f));
+		if (rotate_cube == true) { 
+			p.rotateAroundCenter({ 1.f, 1.f, 1.f }, g_PI / (2.f * 3600.f));
+			cube.rotateAroundCenter({ -1.f, 0.5f, 1.2f }, g_PI / (2.f * 2400.f));
+		}
+		renderObject(g_Camera, p);
 		renderObject(g_Camera, cube);
 
 		SDL_RenderPresent(renderer);
